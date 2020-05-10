@@ -1,0 +1,8 @@
+status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.43.28:8888/intro.html)
+if [[$status==200]]
+then
+echo "Ready To merge and Deploy"
+else
+echo "There is some error"
+exit 0
+fi

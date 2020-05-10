@@ -1,0 +1,9 @@
+#!/bin/bash
+if git branch --show-current | grep dev
+then 
+git push -u origin dev
+curl --user "<jenkin username>:<jenkin password>" http://192.168.43.28:8080/job/testing_job/build?token=test123
+else
+git push -u origin master
+curl --user "<jenkin username>:<jenkin password>" http://192.168.43.28:8080/job/product_job/build?token=prod123
+fi

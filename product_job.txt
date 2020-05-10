@@ -1,0 +1,10 @@
+sudo cp * /root/prod
+if sudo docker container ls -a | grep prod
+then
+echo "It's running in good condition"
+sudo docker container start prod
+else
+sudo docker container run -dit -p 4444:80 -v /root/prod:/usr/local/apache2/htdocs/ --name prod httpd
+fi
+#x=$(sudo docker container inspect --format "{{.NetworkSettings.IPAddress}}" prod)
+#sudo ./ngrok http $x:80

@@ -1,0 +1,10 @@
+sudo cp * /root/test
+if sudo docker container ls -a | grep test
+then
+echo "It's running in good condition"
+sudo docker container start test
+else
+sudo docker container run -dit -p 8888:80 -v /root/test:/usr/local/apache2/htdocs/ --name test httpd
+fi
+#y=$(sudo docker container inspect --format "{{.NetworkSettings.IPAddress}}" test)
+#sudo ./root/Desktop/ngrok http $y:80
